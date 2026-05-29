@@ -1,0 +1,121 @@
+/* estilos del formulario para agregar destinos */
+.seccion-formulario {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 1.5rem;
+}
+
+.titulo-seccion {
+  font-family: var(--fuente-titulo);
+  font-size: 1.2rem;
+  color: var(--color-principal);
+  margin-bottom: 1.2rem;
+}
+
+.formulario-destino {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.grupo-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.grupo-campo label {
+  font-size: 0.82rem;
+  color: var(--texto-secundario);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.grupo-campo input,
+.grupo-campo select,
+.grupo-campo textarea {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  color: var(--texto-primario);
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.95rem;
+  padding: 0.6rem 0.8rem;
+  transition: border-color var(--transicion);
+  outline: none;
+  resize: none;
+}
+
+.grupo-campo input:focus,
+.grupo-campo select:focus,
+.grupo-campo textarea:focus {
+  border-color: var(--color-acento);
+}
+
+.grupo-campo input::placeholder,
+.grupo-campo textarea::placeholder {
+  color: var(--texto-suave);
+}
+
+.grupo-campo select option {
+  background: var(--color-tarjeta);
+}
+
+.fila-dos-columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.atributos-extra {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--color-fondo);
+  border-radius: 6px;
+  border: 1px dashed var(--color-borde);
+}
+
+.boton-expandir {
+  background: none;
+  border: none;
+  color: var(--texto-secundario);
+  cursor: pointer;
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.85rem;
+  padding: 0.3rem 0;
+  text-align: left;
+  transition: color var(--transicion);
+}
+
+.boton-expandir:hover {
+  color: var(--color-acento);
+}
+
+.boton-guardar {
+  background: var(--color-principal);
+  border: none;
+  border-radius: 6px;
+  color: var(--color-fondo);
+  cursor: pointer;
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  transition: opacity var(--transicion);
+  align-self: flex-start;
+}
+
+.boton-guardar:hover {
+  opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+  .fila-dos-columnas {
+    grid-template-columns: 1fr;
+  }
+}

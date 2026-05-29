@@ -1,0 +1,153 @@
+/* tarjeta individual de cada destino */
+.tarjeta-destino {
+  background: var(--color-tarjeta);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: var(--sombra-tarjeta);
+  transition: border-color var(--transicion);
+}
+
+.tarjeta-destino:hover {
+  border-color: var(--color-acento);
+}
+
+.tarjeta-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.tarjeta-nombre-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.tarjeta-categoria-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.tarjeta-nombre {
+  font-family: var(--fuente-titulo);
+  font-size: 1.15rem;
+  color: var(--texto-primario);
+  line-height: 1.3;
+}
+
+.tarjeta-estado {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tarjeta-estado--visitado {
+  background: #4caf8222;
+  color: var(--color-exito);
+}
+
+.tarjeta-estado--pendiente {
+  background: #e8c97a22;
+  color: var(--color-principal);
+}
+
+.tarjeta-ubicacion {
+  color: var(--texto-secundario);
+  font-size: 0.88rem;
+}
+
+.tarjeta-puntuacion {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+
+.puntuacion-numero {
+  font-family: var(--fuente-titulo);
+  font-size: 1.8rem;
+  color: var(--color-principal);
+  line-height: 1;
+}
+
+.puntuacion-max {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+}
+
+.tarjeta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 20px;
+  color: var(--texto-secundario);
+  font-size: 0.78rem;
+  padding: 0.2rem 0.6rem;
+}
+
+.tarjeta-notas {
+  color: var(--texto-secundario);
+  font-size: 0.88rem;
+  font-style: italic;
+  line-height: 1.5;
+  border-left: 2px solid var(--color-borde);
+  padding-left: 0.75rem;
+}
+
+.tarjeta-fecha {
+  color: var(--texto-suave);
+  font-size: 0.78rem;
+}
+
+.tarjeta-acciones {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.3rem;
+}
+
+.boton-accion {
+  border: 1px solid var(--color-borde);
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.82rem;
+  padding: 0.4rem 0.9rem;
+  transition: all var(--transicion);
+}
+
+.boton-editar {
+  background: transparent;
+  color: var(--color-acento);
+  border-color: var(--color-acento);
+}
+
+.boton-editar:hover {
+  background: var(--color-acento);
+  color: var(--color-fondo);
+}
+
+.boton-archivar {
+  background: transparent;
+  color: var(--texto-suave);
+}
+
+.boton-archivar:hover {
+  border-color: var(--color-peligro);
+  color: var(--color-peligro);
+}
