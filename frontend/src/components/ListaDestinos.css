@@ -1,0 +1,54 @@
+/* lista y grilla de destinos */
+.seccion-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.titulo-seccion {
+  font-family: var(--fuente-titulo);
+  font-size: 1.2rem;
+  color: var(--color-principal);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.conteo-badge {
+  background: var(--color-borde);
+  border-radius: 20px;
+  color: var(--texto-secundario);
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.8rem;
+  padding: 0.1rem 0.6rem;
+}
+
+.grilla-destinos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.lista-vacia {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--texto-suave);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lista-vacia-icono {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.lista-vacia p {
+  font-size: 0.95rem;
+}
+
+.lista-vacia-sub {
+  font-size: 0.82rem !important;
+  color: var(--texto-suave);
+}
