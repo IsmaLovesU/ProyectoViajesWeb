@@ -1,8 +1,9 @@
+import { useUser } from '../contexts.jsx'
 import { obtenerCategoria } from '../utils/categorias'
 import './TarjetaDestino.css'
  
 // muestra la info de un destino y los botones de acción
-function TarjetaDestino({ destino, alEditar, alArchivar }) {
+function TarjetaDestino({ destino, alEditar, alArchivar, itemRef }) {
   const categoria = obtenerCategoria(destino.categoriaId)
  
   // formatear fecha para mostrar algo legible
