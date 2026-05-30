@@ -119,6 +119,45 @@ export function useTheme() {
   return ctx
 }
 
+// 3. UserContext — nombre y preferencias del usuario
+const UserContext = createContext(null)
+
+const PREFERENCIAS_DEFAULT = {
+  mostrarNotas: true,
+  ordenarPor: 'fecha',
+  filtroEstado: 'todos'
+}
+
+export function UserProvider({ children }) {
+  const [nombre, setNombreState] = useState(
+    () => localStorage.getItem('user_nombre') || ''
+  )
+  const [preferencias, setPreferenciasState] = useState(() => {
+    try {
+      const guardado = localStorage.getItem('user_preferencias')
+      return guardado ? JSON.parse(guardado) : PREFERENCIAS_DEFAULT
+    } catch {
+      return PREFERENCIAS_DEFAULT
+    }
+  })
+
+  function setNombre(nuevoNombre) {
+    localStorage.setItem('user_nombre', nuevoNombre)
+    setNombreState(nuevoNombre)
+  }
+
+  function setPreferencias(nuevasPrefs) {
+    const actualizadas = { ...preferencias, ...nuevasPrefs }
+    localStorage.setItem('user_preferencias', JSON.stringify(actualizadas))
+    setPreferenciasState(actualizadas)
+  }
+
+  return (
+    <UserContext.Provider value={{ nombre, setNombre, preferencias, setPreferencias }}>
+      {children}
+    </UserContext.Provider>
+  )
+}
 
 export function useUser() {
   const ctx = useContext(UserContext)
