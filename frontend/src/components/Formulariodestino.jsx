@@ -195,7 +195,7 @@ function FormularioDestino({ alGuardar, inputNombreRef }) {
  
             <div className="fila-dos-columnas">
               <div className="grupo-campo">
-                <label htmlFor="presupuesto">Presupuesto (USD)</label>
+                <label htmlFor="presupuesto">Presupuesto (Q)</label>
                 <input
                   id="presupuesto"
                   type="number"
@@ -214,7 +214,7 @@ function FormularioDestino({ alGuardar, inputNombreRef }) {
                   name="duracionDias"
                   value={campos.duracionDias}
                   onChange={manejarCambio}
-                  placeholder="ej: 7"
+                  placeholder="ej: 6"
                   min="1"
                 />
               </div>
