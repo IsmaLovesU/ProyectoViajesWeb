@@ -4,9 +4,9 @@
     --color-superficie: #ffffff;
     --color-tarjeta: #faf8f4;
     --color-borde: #ddd8ce;
-  
-    --color-principal: #b07d2a;
+    --color-principal: #000000;
     --color-acento: #3b6fd4;
+
     --color-peligro: #c94040;
     --color-exito: #2e8a5c;
   
@@ -18,8 +18,8 @@
     --sombra-tarjeta: 0 2px 12px rgba(0, 0, 0, 0.08);
     --transicion: 0.2s ease;
   
-    --fuente-titulo: 'Playfair Display', serif;
-    --fuente-cuerpo: 'DM Sans', sans-serif;
+    --fuente-titulo: 'Cal Sans', sans-serif;
+    --fuente-cuerpo: 'Roboto Condensed', sans-serif;
   }
   
   /* Tema OSCURO */
