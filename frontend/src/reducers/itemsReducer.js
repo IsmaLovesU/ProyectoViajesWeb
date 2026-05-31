@@ -59,7 +59,9 @@ export function itemsReducer(state, action) {
             ? {
                 ...item,
                 estado: action.payload.estado ?? item.estado,
-                puntuacion: action.payload.puntuacion ?? item.puntuacion,
+                puntuacion: Object.hasOwn(action.payload, 'puntuacion')
+                  ? action.payload.puntuacion
+                  : item.puntuacion,
                 fechaActividad: action.payload.fechaActividad ?? item.fechaActividad
               }
             : item

@@ -168,6 +168,7 @@ function App() {
       }, 100)
     } catch (err) {
       console.error('Error al guardar destino:', err)
+      throw err
     }
   }, [guardarItem])
 

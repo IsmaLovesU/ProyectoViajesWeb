@@ -17,7 +17,7 @@ const FORM_VACIO = {
   duracionDias: ''
 }
 
-function FormularioDestino({ alGuardar, inputNombreRef }) {
+function FormularioDestino({ alGuardar, inputNombreRef, alCerrar }) {
   const [campos, setCampos] = useState(FORM_VACIO)
   const [mostrarAtributos, setMostrarAtributos] = useState(false)
 
@@ -26,7 +26,7 @@ function FormularioDestino({ alGuardar, inputNombreRef }) {
     setCampos(prev => ({ ...prev, [name]: value }))
   }
 
-  function manejarEnvio(evento) {
+  async function manejarEnvio(evento) {
     evento.preventDefault()
 
     if (!campos.nombreLugar.trim()) {
@@ -35,7 +35,7 @@ function FormularioDestino({ alGuardar, inputNombreRef }) {
     }
 
     // El componente NO sabe de dónde vienen los datos, solo entrega los valores y App los pasa al contexto
-    alGuardar({
+    await alGuardar({
       nombreLugar: campos.nombreLugar.trim(),
       categoriaId: campos.categoriaId,
       estado: campos.estado,
@@ -53,6 +53,7 @@ function FormularioDestino({ alGuardar, inputNombreRef }) {
  
     setCampos(FORM_VACIO)
     setMostrarAtributos(false)
+    alCerrar?.()
   }
 
   return (

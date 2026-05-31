@@ -42,7 +42,7 @@ function GraficaVacia({ texto }) {
   return <div className="grafica-vacia">{texto}</div>
 }
 
-function PanelEstadisticas({ destinos, estadisticas }) {
+function PanelEstadisticas({ destinos = [], estadisticas = {} }) {
   const datosActividad = useMemo(() => {
     const hoy = new Date()
     hoy.setHours(0, 0, 0, 0)
@@ -108,15 +108,15 @@ function PanelEstadisticas({ destinos, estadisticas }) {
       <div className="estadisticas-resumen">
         <div className="resumen-dato">
           <span>Total filtrado</span>
-          <strong>{estadisticas.total}</strong>
+          <strong>{estadisticas.total ?? 0}</strong>
         </div>
         <div className="resumen-dato">
           <span>Visitados</span>
-          <strong>{estadisticas.visitados}</strong>
+          <strong>{estadisticas.visitados ?? 0}</strong>
         </div>
         <div className="resumen-dato">
           <span>Promedio</span>
-          <strong>{formatearDolares(estadisticas.presupuestoPromedio)}</strong>
+          <strong>{formatearDolares(estadisticas.presupuestoPromedio ?? 0)}</strong>
         </div>
       </div>
 
@@ -146,7 +146,7 @@ function PanelEstadisticas({ destinos, estadisticas }) {
         </article>
 
         <article className="grafica-panel">
-          <h2>Items por categoria</h2>
+          <h2>Destinos por categoria</h2>
           <div className="grafica-contenedor">
             {datosCategorias.length > 0 ? (
               <ResponsiveContainer width="100%" height={240}>
