@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { CATEGORIAS_VIAJE } from '../utils/categorias'
-import { crearDestino } from '../utils/destino'
 import './FormularioDestino.css'
 
 // valores vacíos del formulario — se reusan al limpiar después de guardar
@@ -18,7 +17,7 @@ const FORM_VACIO = {
   duracionDias: ''
 }
 
-function FormularioDestino({ alGuardar }) {
+function FormularioDestino({ alGuardar, inputNombreRef }) {
   const [campos, setCampos] = useState(FORM_VACIO)
   const [mostrarAtributos, setMostrarAtributos] = useState(false)
 
@@ -35,7 +34,8 @@ function FormularioDestino({ alGuardar }) {
       return
     }
 
-    const nuevoDestino = crearDestino({
+    // El componente NO sabe de dónde vienen los datos, solo entrega los valores y App los pasa al contexto
+    alGuardar({
       nombreLugar: campos.nombreLugar.trim(),
       categoriaId: campos.categoriaId,
       estado: campos.estado,
@@ -50,9 +50,7 @@ function FormularioDestino({ alGuardar }) {
         duracionDias: campos.duracionDias !== '' ? Number(campos.duracionDias) : null
       }
     })
-
-    console.log('Nuevo destino creado:', nuevoDestino)
-    alGuardar(nuevoDestino)
+ 
     setCampos(FORM_VACIO)
     setMostrarAtributos(false)
   }
@@ -63,11 +61,11 @@ function FormularioDestino({ alGuardar }) {
  
       <form onSubmit={manejarEnvio} className="formulario-destino">
  
-        {/* campos principales */}
         <div className="grupo-campo">
           <label htmlFor="nombreLugar">Nombre del lugar *</label>
           <input
             id="nombreLugar"
+            ref={inputNombreRef}
             type="text"
             name="nombreLugar"
             value={campos.nombreLugar}
@@ -107,8 +105,7 @@ function FormularioDestino({ alGuardar }) {
             </select>
           </div>
         </div>
- 
-        {/* puntuación solo si ya lo visitó */}
+  
         {campos.estado === 'visitado' && (
           <div className="grupo-campo">
             <label htmlFor="puntuacion">Puntuación (0-10)</label>
@@ -120,7 +117,7 @@ function FormularioDestino({ alGuardar }) {
               onChange={manejarCambio}
               min="0"
               max="10"
-              placeholder="¿Cuánto lo disfrutaste?"
+              placeholder="¿Qué puntuación le darías al viaje?"
             />
           </div>
         )}
@@ -132,7 +129,7 @@ function FormularioDestino({ alGuardar }) {
             name="notas"
             value={campos.notas}
             onChange={manejarCambio}
-            placeholder="Recuerdos, tips, pendientes..."
+            placeholder="Deja notas sobre tu viaje aquí..."
             rows={3}
           />
         </div>
@@ -157,7 +154,7 @@ function FormularioDestino({ alGuardar }) {
                   name="pais"
                   value={campos.pais}
                   onChange={manejarCambio}
-                  placeholder="ej: Perú"
+                  placeholder="ej: Suiza"
                 />
               </div>
               <div className="grupo-campo">
@@ -168,7 +165,7 @@ function FormularioDestino({ alGuardar }) {
                   name="ciudad"
                   value={campos.ciudad}
                   onChange={manejarCambio}
-                  placeholder="ej: Cusco"
+                  placeholder="ej: Berna"
                 />
               </div>
             </div>
@@ -205,7 +202,7 @@ function FormularioDestino({ alGuardar }) {
                   name="presupuesto"
                   value={campos.presupuesto}
                   onChange={manejarCambio}
-                  placeholder="ej: 800"
+                  placeholder="ej: 6767"
                   min="0"
                 />
               </div>
