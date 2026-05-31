@@ -61,7 +61,7 @@
 }
 
 .grafica-contenedor {
-  height: 260px;
+  height: 280px;
   min-width: 0;
 }
 
@@ -98,5 +98,9 @@
 
   .grafica-panel--ancha {
     grid-column: auto;
+  }
+
+  .grafica-contenedor {
+    height: 300px;
   }
 }

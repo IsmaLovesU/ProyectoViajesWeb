@@ -133,7 +133,7 @@ function ModalEdicion({ destino, alGuardar, alCerrar }) {
 
           <div className="fila-dos-columnas">
             <div className="grupo-campo">
-              <label>Presupuesto (USD)</label>
+              <label>Presupuesto (Q)</label>
               <input type="number" name="presupuesto" value={campos.presupuesto}
                 onChange={manejarCambio} min="0" />
             </div>

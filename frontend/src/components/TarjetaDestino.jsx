@@ -69,7 +69,7 @@ function TarjetaDestino({ destino, alEditar, alArchivar, alCambiarEstado, itemRe
                     <span className="chip">📅 {destino.atributos.duracionDias} días</span>
                 )}
                 {destino.atributos?.presupuesto && (
-                    <span className="chip">💵 ${destino.atributos.presupuesto}</span>
+                    <span className="chip">💵 Q{destino.atributos.presupuesto}</span>
                 )}
             </div>
 

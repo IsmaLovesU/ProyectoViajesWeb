@@ -433,7 +433,11 @@ function App() {
                 ×
               </button>
             </div>
-            <FormularioDestino alGuardar={agregarDestino} inputNombreRef={inputNombreRef} />
+            <FormularioDestino
+              alGuardar={agregarDestino}
+              inputNombreRef={inputNombreRef}
+              alCerrar={() => setMostrarFormulario(false)}
+            />
           </div>
         </div>
       )}

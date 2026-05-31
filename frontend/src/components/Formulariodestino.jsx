@@ -196,7 +196,7 @@ function FormularioDestino({ alGuardar, inputNombreRef, alCerrar }) {
  
             <div className="fila-dos-columnas">
               <div className="grupo-campo">
-                <label htmlFor="presupuesto">Presupuesto (USD)</label>
+                <label htmlFor="presupuesto">Presupuesto (Q)</label>
                 <input
                   id="presupuesto"
                   type="number"

@@ -34,8 +34,8 @@ function obtenerPresupuesto(destino) {
   return Number.isFinite(presupuesto) && presupuesto > 0 ? presupuesto : null
 }
 
-function formatearDolares(valor) {
-  return `$${Number(valor || 0).toLocaleString('es-GT')}`
+function formatearQuetzales(valor) {
+  return `Q${Number(valor || 0).toLocaleString('es-GT')}`
 }
 
 function GraficaVacia({ texto }) {
@@ -116,7 +116,7 @@ function PanelEstadisticas({ destinos = [], estadisticas = {} }) {
         </div>
         <div className="resumen-dato">
           <span>Promedio</span>
-          <strong>{formatearDolares(estadisticas.presupuestoPromedio ?? 0)}</strong>
+          <strong>{formatearQuetzales(estadisticas.presupuestoPromedio ?? 0)}</strong>
         </div>
       </div>
 
@@ -124,7 +124,7 @@ function PanelEstadisticas({ destinos = [], estadisticas = {} }) {
         <article className="grafica-panel">
           <h2>Actividad ultimos 7 dias</h2>
           <div className="grafica-contenedor">
-            <ResponsiveContainer width="100%" height={240}>
+            <ResponsiveContainer width="100%" height="100%">
               <LineChart data={datosActividad} margin={{ top: 12, right: 18, left: -12, bottom: 4 }}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis dataKey="dia" tickLine={false} axisLine={false} />
@@ -149,7 +149,7 @@ function PanelEstadisticas({ destinos = [], estadisticas = {} }) {
           <h2>Destinos por categoria</h2>
           <div className="grafica-contenedor">
             {datosCategorias.length > 0 ? (
-              <ResponsiveContainer width="100%" height={240}>
+              <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Tooltip />
                   <Legend />
@@ -177,12 +177,12 @@ function PanelEstadisticas({ destinos = [], estadisticas = {} }) {
           <h2>Presupuesto promedio por categoria</h2>
           <div className="grafica-contenedor">
             {datosPresupuesto.length > 0 ? (
-              <ResponsiveContainer width="100%" height={260}>
+              <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={datosPresupuesto} margin={{ top: 12, right: 18, left: 4, bottom: 4 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} />
                   <XAxis dataKey="categoria" tickLine={false} axisLine={false} />
-                  <YAxis tickFormatter={formatearDolares} tickLine={false} axisLine={false} />
-                  <Tooltip formatter={valor => [formatearDolares(valor), 'Presupuesto promedio']} />
+                  <YAxis tickFormatter={formatearQuetzales} tickLine={false} axisLine={false} />
+                  <Tooltip formatter={valor => [formatearQuetzales(valor), 'Presupuesto promedio']} />
                   <Legend />
                   <Bar dataKey="promedio" name="Presupuesto promedio" radius={[6, 6, 0, 0]}>
                     {datosPresupuesto.map(categoria => (
