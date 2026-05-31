@@ -304,10 +304,7 @@ function App() {
       <header className="cabecera">
         <div className="cabecera-texto">
           <h1>Mis Destinos ✈️</h1>
-          <p className="subtitulo">
-            Registro personal de viajes
-            <span className="conteo-badge">{destinosActivos.length}</span>
-          </p>
+          <p className="subtitulo">Registro personal de viajes</p>
         </div>
 
         <div className="cabecera-controles">
