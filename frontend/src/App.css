@@ -85,3 +85,72 @@ main {
   background: var(--color-tarjeta);
   border-color: var(--color-acento);
 }
+
+/* ── ControlModo ──────────────────────────────────────────────────────────── */
+.control-modo {
+  align-items: center;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 20px;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+ 
+.modo-label {
+  align-items: center;
+  color: var(--texto-suave);
+  cursor: pointer;
+  display: flex;
+  gap: 0.3rem;
+  transition: color var(--transicion);
+}
+ 
+.modo-label.modo-activo {
+  color: var(--texto-primario);
+}
+ 
+.modo-dot {
+  background: var(--color-borde);
+  border-radius: 50%;
+  display: inline-block;
+  height: 7px;
+  width: 7px;
+  transition: background var(--transicion);
+}
+ 
+.modo-label.modo-activo .modo-dot {
+  background: var(--color-exito);
+  box-shadow: 0 0 5px var(--color-exito);
+}
+ 
+.modo-toggle {
+  background: var(--color-borde);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  height: 20px;
+  padding: 2px;
+  position: relative;
+  transition: background var(--transicion);
+  width: 36px;
+}
+ 
+.modo-toggle--api  { background: var(--color-acento); }
+.modo-toggle--local { background: var(--color-exito); }
+ 
+.modo-toggle-thumb {
+  background: white;
+  border-radius: 50%;
+  display: block;
+  height: 16px;
+  position: absolute;
+  top: 2px;
+  transition: left var(--transicion);
+  width: 16px;
+}
+ 
+.modo-toggle--local .modo-toggle-thumb { left: 2px; }
+.modo-toggle--api   .modo-toggle-thumb { left: 18px; }
