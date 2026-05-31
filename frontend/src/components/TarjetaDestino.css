@@ -117,6 +117,7 @@
 
 .tarjeta-acciones {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.6rem;
   margin-top: 0.3rem;
 }
@@ -129,6 +130,18 @@
   font-size: 0.82rem;
   padding: 0.4rem 0.9rem;
   transition: all var(--transicion);
+}
+
+.boton-estado {
+  background: color-mix(in srgb, var(--color-exito) 12%, transparent);
+  border-color: color-mix(in srgb, var(--color-exito) 45%, var(--color-borde));
+  color: var(--color-exito);
+}
+
+.boton-estado:hover {
+  background: var(--color-exito);
+  border-color: var(--color-exito);
+  color: var(--color-fondo);
 }
 
 .boton-editar {
