@@ -22,11 +22,16 @@
   font-size: 0.9rem;
 }
 
+.cabecera-controles {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 .cabecera-stats {
   display: flex;
   gap: 0.6rem;
-  flex-wrap: wrap;
-  align-items: center;
 }
 
 .stat-chip {
@@ -42,7 +47,7 @@
 }
 
 .stat-pendiente {
-  background: #e8c97a22;
+  background: color-mix(in srgb, var(--color-principal) 15%, transparent);
   color: var(--color-principal);
 }
 
@@ -50,4 +55,33 @@ main {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.cargando {
+  color: var(--texto-secundario);
+  font-size: 0.95rem;
+  padding: 2rem 0;
+  text-align: center;
+}
+ 
+/* ── BotonTema ────────────────────────────────────────────────────────────── */
+.boton-tema {
+  align-items: center;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: 20px;
+  color: var(--texto-primario);
+  cursor: pointer;
+  display: flex;
+  font-family: var(--fuente-cuerpo);
+  font-size: 0.85rem;
+  font-weight: 500;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  transition: background var(--transicion), border-color var(--transicion);
+}
+ 
+.boton-tema:hover {
+  background: var(--color-tarjeta);
+  border-color: var(--color-acento);
 }
