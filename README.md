@@ -23,14 +23,8 @@ cp .env.example .env
 npm run dev
 ```
 
-## Categorías disponibles
-- Ciudad 🏙️
-- Naturaleza 🌿
-- Histórico 🏛️
-- Gastronómico 🍜
-
  ## Mis primeros destinos
-![Captura de mis destinos]()
+![Captura de mis destinos](https://github.com/IsmaLovesU/ProyectoViajesWeb/blob/85155ef2a12c0fea3b3974398358cab9bde14f66/imagen_2026-05-31_000902564.png)
 
  ## Fases del proyecto
  
