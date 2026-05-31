@@ -64,7 +64,7 @@ main {
   text-align: center;
 }
  
-/* ── BotonTema ────────────────────────────────────────────────────────────── */
+/* BotonTema */
 .boton-tema {
   align-items: center;
   background: var(--color-superficie);
@@ -86,7 +86,7 @@ main {
   border-color: var(--color-acento);
 }
 
-/* ── ControlModo ──────────────────────────────────────────────────────────── */
+/* ControlModo */
 .control-modo {
   align-items: center;
   background: var(--color-superficie);

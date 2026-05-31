@@ -1,25 +1,44 @@
 /* variables globales del proyecto */
 :root {
-  --color-fondo: #0f1117;
-  --color-superficie: #1a1d27;
-  --color-tarjeta: #21253a;
-  --color-borde: #2e3451;
-
-  --color-principal: #e8c97a;
-  --color-acento: #5b8dee;
-  --color-peligro: #e05c5c;
-  --color-exito: #4caf82;
-
-  --texto-primario: #f0eeea;
-  --texto-secundario: #8b90a7;
-  --texto-suave: #555b75;
-
-  --radio-borde: 10px;
-  --sombra-tarjeta: 0 4px 20px rgba(0, 0, 0, 0.35);
-  --transicion: 0.2s ease;
-
-  --fuente-titulo: 'Playfair Display', serif;
-  --fuente-cuerpo: 'DM Sans', sans-serif;
+    --color-fondo: #f5f3ee;
+    --color-superficie: #ffffff;
+    --color-tarjeta: #faf8f4;
+    --color-borde: #ddd8ce;
+  
+    --color-principal: #b07d2a;
+    --color-acento: #3b6fd4;
+    --color-peligro: #c94040;
+    --color-exito: #2e8a5c;
+  
+    --texto-primario: #1c1a17;
+    --texto-secundario: #5a5448;
+    --texto-suave: #9c9488;
+  
+    --radio-borde: 10px;
+    --sombra-tarjeta: 0 2px 12px rgba(0, 0, 0, 0.08);
+    --transicion: 0.2s ease;
+  
+    --fuente-titulo: 'Playfair Display', serif;
+    --fuente-cuerpo: 'DM Sans', sans-serif;
+  }
+  
+  /* Tema OSCURO */
+  body[data-theme='oscuro'] {
+    --color-fondo: #0f1117;
+    --color-superficie: #1a1d27;
+    --color-tarjeta: #21253a;
+    --color-borde: #2e3451;
+  
+    --color-principal: #e8c97a;
+    --color-acento: #5b8dee;
+    --color-peligro: #e05c5c;
+    --color-exito: #4caf82;
+  
+    --texto-primario: #f0eeea;
+    --texto-secundario: #8b90a7;
+    --texto-suave: #555b75;
+  
+    --sombra-tarjeta: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
 * {
@@ -33,6 +52,7 @@ body {
   color: var(--texto-primario);
   font-family: var(--fuente-cuerpo);
   min-height: 100vh;
+  transition: background-color var(--transicion), color var(--transicion);
 }
 
 .contenedor-app {
