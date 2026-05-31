@@ -1,68 +1,107 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import FormularioDestino from './components/FormularioDestino'
 import ListaDestinos from './components/ListaDestinos'
 import ModalEdicion from './components/ModalEdicion'
+import BotonTema from './components/BotonTema'
+import ControlModo from './components/ControlModo'
+import { useStorage, useTheme } from './contexts.jsx'
 import './App.css'
 
 function App() {
-  // lazy initializer para no leer localStorage en cada render
-  const [destinos, setDestinos] = useState(() => {
-    try {
-      const guardado = localStorage.getItem('destinos')
-      const lista = guardado ? JSON.parse(guardado) : []
-      console.log('Destinos cargados del localStorage:', lista.length)
-      return lista
-    } catch (error) {
-      console.log('Error al leer localStorage, iniciando vacío:', error)
-      return []
-    }
-  })
-
-  // (null = modal cerrado)
+  const { obtenerItems, guardarItem, eliminarItem } = useStorage()
+  const { tema } = useTheme()
+ 
+  const [destinos, setDestinos] = useState([])
+  const [cargando, setCargando] = useState(true)
   const [destinoEnEdicion, setDestinoEnEdicion] = useState(null)
-
-  // sincronizar con localStorage cada vez que cambia la lista
+ 
+  // useRef #1 — focus al input de nombre después de guardar y con Ctrl+N
+  const inputNombreRef = useRef(null)
+ 
+  // useRef #2 — scroll automático al último destino agregado
+  const ultimoItemRef = useRef(null)
+ 
+  // Cargar items al montar y cuando cambia el modo
   useEffect(() => {
-    localStorage.setItem('destinos', JSON.stringify(destinos))
-    console.log('localStorage actualizado —', destinos.length, 'destinos')
-  }, [destinos])
-
-  // agregar destino nuevo al inicio de la lista
-  function agregarDestino(nuevoDestino) {
-    setDestinos(prev => [nuevoDestino, ...prev])
+    async function cargar() {
+      setCargando(true)
+      try {
+        const items = await obtenerItems()
+        setDestinos(items)
+      } catch (err) {
+        console.error('Error al cargar destinos:', err)
+      } finally {
+        setCargando(false)
+      }
+    }
+    cargar()
+  }, [obtenerItems])
+ 
+  async function agregarDestino(datosNuevo) {
+    try {
+      const guardado = await guardarItem(datosNuevo)
+      setDestinos(prev => [guardado, ...prev])
+ 
+      // useRef #2: scroll suave al item recién agregado
+      setTimeout(() => {
+        ultimoItemRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }, 100)
+ 
+      // useRef #1: foco de vuelta al input para seguir agregando
+      setTimeout(() => {
+        inputNombreRef.current?.focus()
+      }, 150)
+    } catch (err) {
+      console.error('Error al guardar destino:', err)
+    }
   }
-
-  // guardar cambios del modal de edición
-  function guardarEdicion(destinoEditado) {
-    setDestinos(prev =>
-      prev.map(d => d.id === destinoEditado.id
-        ? { ...destinoEditado, fechaActividad: new Date().toISOString() }
-        : d
+ 
+  async function guardarEdicion(destinoEditado) {
+    try {
+      await guardarItem(destinoEditado)
+      setDestinos(prev =>
+        prev.map(d => d.id === destinoEditado.id
+          ? { ...destinoEditado, fechaActividad: new Date().toISOString() }
+          : d
+        )
       )
-    )
-    setDestinoEnEdicion(null)
+      setDestinoEnEdicion(null)
+    } catch (err) {
+      console.error('Error al editar destino:', err)
+    }
   }
-
-  // archivar = activo: false, no eliminar de verdad
-  function archivarDestino(idDestino) {
-    const confirmado = window.confirm('¿Archivar este destino? Seguirá guardado pero no aparecerá en la lista.')
+ 
+  async function archivarDestino(idDestino) {
+    const confirmado = window.confirm('¿Archivar este destino?')
     if (!confirmado) return
-
-    setDestinos(prev =>
-      prev.map(d => d.id === idDestino
-        ? { ...d, activo: false, fechaActividad: new Date().toISOString() }
-        : d
-      )
-    )
-    console.log('Destino archivado:', idDestino)
+    try {
+      await eliminarItem(idDestino)
+      setDestinos(prev => prev.filter(d => d.id !== idDestino))
+    } catch (err) {
+      console.error('Error al archivar destino:', err)
+    }
   }
-
-  // solo mostrar los activos
-  const destinosActivos = destinos.filter(d => d.activo)
-
-  const totalVisitados = destinosActivos.filter(d => d.estado === 'visitado').length
+ 
+  // Atajos de teclado con cleanup — patrón obligatorio del doc
+  const manejarAtajos = useCallback((e) => {
+    // Ctrl+N → focus al input de nombre (useRef #1)
+    if (e.ctrlKey && e.key === 'n') {
+      e.preventDefault()
+      inputNombreRef.current?.focus()
+      inputNombreRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    }
+    // T → toggle tema (el resto de la lógica está en BotonTema.jsx)
+  }, [])
+ 
+  useEffect(() => {
+    window.addEventListener('keydown', manejarAtajos)
+    return () => window.removeEventListener('keydown', manejarAtajos)
+  }, [manejarAtajos])
+ 
+  const destinosActivos = destinos.filter(d => d.activo !== false)
+  const totalVisitados  = destinosActivos.filter(d => d.estado === 'visitado').length
   const totalPendientes = destinosActivos.filter(d => d.estado === 'pendiente').length
-
+ 
   return (
     <div className="contenedor-app">
       <header className="cabecera">
@@ -70,22 +109,33 @@ function App() {
           <h1>Mis Destinos ✈️</h1>
           <p className="subtitulo">Registro personal de viajes</p>
         </div>
-        <div className="cabecera-stats">
-          <span className="stat-chip stat-visitado">{totalVisitados} visitados</span>
-          <span className="stat-chip stat-pendiente">{totalPendientes} pendientes</span>
+ 
+        <div className="cabecera-controles">
+          <BotonTema />
+          <ControlModo />
+          <div className="cabecera-stats">
+            <span className="stat-chip stat-visitado">{totalVisitados} visitados</span>
+            <span className="stat-chip stat-pendiente">{totalPendientes} pendientes</span>
+          </div>
         </div>
       </header>
-
+ 
       <main>
-        <FormularioDestino alGuardar={agregarDestino} />
-        <ListaDestinos
-          destinos={destinosActivos}
-          alEditar={setDestinoEnEdicion}
-          alArchivar={archivarDestino}
-        />
+        {cargando ? (
+          <p className="cargando">Cargando destinos…</p>
+        ) : (
+          <>
+            <FormularioDestino alGuardar={agregarDestino} inputNombreRef={inputNombreRef} />
+            <ListaDestinos
+              destinos={destinosActivos}
+              alEditar={setDestinoEnEdicion}
+              alArchivar={archivarDestino}
+              ultimoItemRef={ultimoItemRef}
+            />
+          </>
+        )}
       </main>
-
-      {/* modal de edición — solo se renderiza si hay algo en edición */}
+ 
       {destinoEnEdicion && (
         <ModalEdicion
           destino={destinoEnEdicion}
