@@ -1,20 +1,18 @@
 import { useEffect } from 'react'
 import { useTheme } from '../contexts.jsx'
+import useAtajoTeclado from '../hooks/useAtajoTeclado.js'
 
 function BotonTema() {
   const { tema, toggleTema } = useTheme()
 
-  // Atajo T → toggle tema, con cleanup obligatorio
-  // Se ignora si el foco está en un input para no interferir al escribir
-  useEffect(() => {
-    const handler = (e) => {
-      const tag = document.activeElement?.tagName
-      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return
-      if (e.key === 't' || e.key === 'T') toggleTema()
-    }
-    window.addEventListener('keydown', handler)
-    return () => window.removeEventListener('keydown', handler)
+  // useCallback para que useAtajoTeclado no re-registre el listener en cada render
+  const manejarAtajoTema = useCallback(() => {
+    toggleTema()
   }, [toggleTema])
+ 
+  // Atajo T → toggle tema, ignorando inputs automáticamente
+  useAtajoTeclado('t', manejarAtajoTema)
+  useAtajoTeclado('T', manejarAtajoTema)
 
   return (
     <button
