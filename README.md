@@ -11,13 +11,13 @@ siendo el proyecto final de Sistemas y tecnologías web.
 ## Screenshots
  
 ### Modo claro — Vista principal
-![Modo claro]()
+![Modo claro](https://github.com/IsmaLovesU/ProyectoViajesWeb/blob/16f8818fe99d6da0e5cb2a836071a0bb06d5e2bb/images/ModoClaro.png)
  
 ### Modo oscuro — Vista principal
-![Modo oscuro]()
+![Modo oscuro](https://github.com/IsmaLovesU/ProyectoViajesWeb/blob/16f8818fe99d6da0e5cb2a836071a0bb06d5e2bb/images/ModoOscuro.png)
  
 ### Panel de estadísticas con gráficas
-![Estadística]()
+![Estadística](https://github.com/IsmaLovesU/ProyectoViajesWeb/blob/16f8818fe99d6da0e5cb2a836071a0bb06d5e2bb/images/ModoEstadistica.png)
 
 ## Stack tecnológico
  
@@ -90,9 +90,9 @@ El frontend estará disponible en `http://localhost:5173`.
  
 | Campo |  |
 |-------|-------|
-| **Nombre** | _(Andrés Esteban Ismalej González)_ |
-| **Carnet** | _(24005)_ |
-| **Semestre** | _(5to Semestre)_ |
+| **Nombre** | Andrés Esteban Ismalej González |
+| **Carnet** | 24005 |
+| **Semestre** | 5to Semestre |
  
 **Reflexión:** A lo largo de este proyecto entendí el uso de useReducer en lugar de useState, al igual que por qué los custom hooks existen más allá de "reutilizar código", ya que al construir cada fase desde cero me obligó a tomar decisiones reales. Los custom hooks dejaron de ser un concepto abstracto cuando tuve que escribir el JSDoc de useRacha y explicar exactamente qué recibe, qué calcula y qué devuelve. Para mi, el deploy fue la sorpresa más grande, porque siempre pensé que era algo para personas con más experiencia, lleno de configuraciones complicadas, pero resulta que conectar un repositorio de GitHub a Vercel toma literalmente dos minutos, y los errores que aparecieron (el CORS con la barra extra al final de la URL, la variable de entorno apuntando a la raíz en lugar de a /api/items) fueron problemas concretos con soluciones concretas, no cosas de otro mundo. Así mismo, ver la app corriendo en una URL pública real, con el backend en Render respondiendo desde una base de datos en producción, fue la primera vez que sentí que lo que construí existe y puede servrile a alguien.
 
