@@ -25,14 +25,7 @@ npm run dev
 ## Fase 2: useContext
 
  ## Mis primeros destinos
-![Captura de mis destinos](https://github.com/IsmaLovesU/ProyectoViajesWeb/blob/85155ef2a12c0fea3b3974398358cab9bde14f66/imagen_2026-05-31_000902564.png)
-
- ## Fases del proyecto
- 
-- **Fase 1** useState + useEffect + Backend Express base
-- **Fase 2** useContext híbrido + useRef
-- **Fase 3** useReducer + Gráficas
-- **Fase 4** Custom hooks + Deploy
+![Captura de mis destinos]()
 
 ## Fase 3: useReducer, Recharts y optimizacion
 
@@ -54,9 +47,21 @@ Se usa `useCallback` para handlers que se pasan a componentes hijos, como editar
 
 ### Evidencia con React DevTools Profiler
 
+### Antes:
+![Captura de mis destinos]()
+
+### Despues:
+![Captura de mis destinos]()
 
 ### Mis 3 decisiones tecnicas
 
 1. Estructura del reducer: separe las acciones de datos (`HIDRATAR`, `AGREGAR`, `ACTUALIZAR`, `ELIMINAR`) de las acciones de filtros (`FILTRAR`, `LIMPIAR_FILTROS`) y actividad (`REGISTRAR_ACTIVIDAD`).
 2. Accion mas dificil: `CAMBIAR_ESTADO`, porque al volver un destino a pendiente debe permitir limpiar la puntuacion con `null` sin que el reducer conserve el valor anterior.
 3. Grafica mas compleja: presupuesto promedio por categoria, porque transforma destinos filtrados, agrupa por categoria, descarta presupuestos vacios y calcula un promedio por grupo.
+
+ ## Fases del proyecto
+ 
+- **Fase 1** useState + useEffect + Backend Express base
+- **Fase 2** useContext híbrido + useRef
+- **Fase 3** useReducer + Gráficas
+- **Fase 4** Custom hooks + Deploy
