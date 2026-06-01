@@ -24,8 +24,8 @@ npm run dev
 ```
 ## Fase 2: useContext
 
- ## Mis primeros destinos
-![Captura de mis destinos]()
+### Mis primeros destinos
+![Captura de mis destinos](https://github.com/IsmaLovesU/ProyectoViajesWeb/blob/2709ef3557f53daf28273addc7b2ca3405173e7b/images/imagen_2026-05-31_000902564.png)
 
 ## Fase 3: useReducer, Recharts y optimizacion
 
@@ -37,7 +37,11 @@ Las graficas aparecen al hacer click en el boton `Estadisticas` y reaccionan a l
 - Distribucion de destinos por categoria.
 - La grafica original es `Presupuesto promedio por categoria`. La elegi porque en una app de viajes no solo importa cuantos destinos hay, sino tambien que tipo de viaje requiere mayor inversion promedio.
 
-### Optimizacion aplicada
+### Capturas
+![Estadistica1](https://github.com/IsmaLovesU/ProyectoViajesWeb/blob/4b1c2d541cfb19aa8d600b34d5d39c596f347bc2/images/Estadisticas1.png)
+![Estadistica2](https://github.com/IsmaLovesU/ProyectoViajesWeb/blob/4b1c2d541cfb19aa8d600b34d5d39c596f347bc2/images/Estadisticas2.png)
+
+## Optimizacion aplicada
 
 Se usa `useMemo` para la lista filtrada, estadisticas generales y datos derivados para graficas.
 
@@ -45,13 +49,15 @@ Se usa `useCallback` para handlers que se pasan a componentes hijos, como editar
 
 `TarjetaDestino` se exporta con `React.memo` para evitar renders innecesarios cuando sus props no cambian.
 
-### Evidencia con React DevTools Profiler
+## Evidencia con React DevTools Profiler
 
 ### Antes:
-![Captura de mis destinos]()
+![Antes](https://github.com/IsmaLovesU/ProyectoViajesWeb/blob/2709ef3557f53daf28273addc7b2ca3405173e7b/images/Antes.png)
 
 ### Despues:
-![Captura de mis destinos]()
+![Despues](https://github.com/IsmaLovesU/ProyectoViajesWeb/blob/2709ef3557f53daf28273addc7b2ca3405173e7b/images/Despues.png)
+
+Despues de memorizar la lista filtrada, estadisticas y datos de graficas, los calculos derivados solo se repiten cuando cambian `lista`, `filtroCategoria`, `filtroEstado` o `busqueda`. `TarjetaDestino` evita re-renderizar tarjetas cuyas props no cambiaron gracias a `React.memo` y handlers estables con `useCallback`.
 
 ### Mis 3 decisiones tecnicas
 
