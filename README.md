@@ -2,6 +2,9 @@
 Aplicación web Full Stack para registrar viajes personales, la cual se construyó con React + Express, 
 siendo el proyecto final de Sistemas y tecnologías web.
 
+### Enlace a Video:
+[Video]()
+
 ### Enlace a Demo:
 [viajes-frontend.vercel.app](https://proyecto-viajes-web-wa63.vercel.app)
 
@@ -76,27 +79,6 @@ npm run dev
 ```
  
 El frontend estará disponible en `http://localhost:5173`.
- 
-## Hooks usados (Fase 4)
- 
-| Hook | Archivo | Qué hace |
-|------|---------|----------|
-| `useLocalStorage` | `src/hooks/useLocalStorage.js` | Envuelve `useState` + `useEffect` para sincronizar cualquier valor con `localStorage`. Soporta valores iniciales y JSON automático. |
-| `useFetch` | `src/hooks/useFetch.js` | Fetch con estados `data / loading / error` + `AbortController` para cancelar peticiones al desmontar o cambiar URL. |
-| `useAtajoTeclado` | `src/hooks/useAtajoTeclado.js` | Registra un listener `keydown` para un atajo específico con cleanup automático. Soporta `Ctrl`, ignora inputs opcionalmente. Reemplaza los `useEffect` manuales de `App.jsx` y `BotonTema.jsx`. |
-| `useRacha` | `src/hooks/useRacha.js` | Hook de dominio: calcula la racha actual de días consecutivos con actividad (agregar, editar o visitar destinos). Devuelve `{ racha, activo, diasConActividad }`. |
-
-## Sobre mí
- 
-| Campo |  |
-|-------|-------|
-| **Nombre** | Andrés Esteban Ismalej González |
-| **Carnet** | 24005 |
-| **Semestre** | 5to Semestre |
- 
-**Reflexión:** A lo largo de este proyecto entendí el uso de useReducer en lugar de useState, al igual que por qué los custom hooks existen más allá de "reutilizar código", ya que al construir cada fase desde cero me obligó a tomar decisiones reales. Los custom hooks dejaron de ser un concepto abstracto cuando tuve que escribir el JSDoc de useRacha y explicar exactamente qué recibe, qué calcula y qué devuelve. Para mi, el deploy fue la sorpresa más grande, porque siempre pensé que era algo para personas con más experiencia, lleno de configuraciones complicadas, pero resulta que conectar un repositorio de GitHub a Vercel toma literalmente dos minutos, y los errores que aparecieron (el CORS con la barra extra al final de la URL, la variable de entorno apuntando a la raíz en lugar de a /api/items) fueron problemas concretos con soluciones concretas, no cosas de otro mundo. Así mismo, ver la app corriendo en una URL pública real, con el backend en Render respondiendo desde una base de datos en producción, fue la primera vez que sentí que lo que construí existe y puede servrile a alguien.
-
----
 
 ## Fase 1 y 2: useContext
 
@@ -161,7 +143,26 @@ Despues de memorizar la lista filtrada, estadisticas y datos de graficas, los ca
 2. Accion mas dificil: `CAMBIAR_ESTADO`, porque al volver un destino a pendiente debe permitir limpiar la puntuacion con `null` sin que el reducer conserve el valor anterior.
 3. Grafica mas compleja: presupuesto promedio por categoria, porque transforma destinos filtrados, agrupa por categoria, descarta presupuestos vacios y calcula un promedio por grupo.
 
+## Fase 4: Hooks usados
+ 
+| Hook | Archivo | Qué hace |
+|------|---------|----------|
+| `useLocalStorage` | `src/hooks/useLocalStorage.js` | Envuelve `useState` + `useEffect` para sincronizar cualquier valor con `localStorage`. Soporta valores iniciales y JSON automático. |
+| `useFetch` | `src/hooks/useFetch.js` | Fetch con estados `data / loading / error` + `AbortController` para cancelar peticiones al desmontar o cambiar URL. |
+| `useAtajoTeclado` | `src/hooks/useAtajoTeclado.js` | Registra un listener `keydown` para un atajo específico con cleanup automático. Soporta `Ctrl`, ignora inputs opcionalmente. Reemplaza los `useEffect` manuales de `App.jsx` y `BotonTema.jsx`. |
+| `useRacha` | `src/hooks/useRacha.js` | Hook de dominio: calcula la racha actual de días consecutivos con actividad (agregar, editar o visitar destinos). Devuelve `{ racha, activo, diasConActividad }`. |
 
+## Sobre mí
+ 
+| Campo |  |
+|-------|-------|
+| **Nombre** | Andrés Esteban Ismalej González |
+| **Carnet** | 24005 |
+| **Semestre** | 5to Semestre |
+ 
+**Reflexión:** A lo largo de este proyecto entendí el uso de useReducer en lugar de useState, al igual que por qué los custom hooks existen más allá de "reutilizar código", ya que al construir cada fase desde cero me obligó a tomar decisiones reales. Los custom hooks dejaron de ser un concepto abstracto cuando tuve que escribir el JSDoc de useRacha y explicar exactamente qué recibe, qué calcula y qué devuelve. Para mi, el deploy fue la sorpresa más grande, porque siempre pensé que era algo para personas con más experiencia, lleno de configuraciones complicadas, pero resulta que conectar un repositorio de GitHub a Vercel toma literalmente dos minutos, y los errores que aparecieron (el CORS con la barra extra al final de la URL, la variable de entorno apuntando a la raíz en lugar de a /api/items) fueron problemas concretos con soluciones concretas, no cosas de otro mundo. Así mismo, ver la app corriendo en una URL pública real, con el backend en Render respondiendo desde una base de datos en producción, fue la primera vez que sentí que lo que construí existe y puede servrile a alguien.
+
+---
 
  ## Fases del proyecto
  
