@@ -3,7 +3,7 @@ Aplicación web Full Stack para registrar viajes personales, la cual se construy
 siendo el proyecto final de Sistemas y tecnologías web.
 
 ### Enlace a Video:
-[Video]()
+[Video](https://youtu.be/09Cl6ueVnCc)
 
 ### Enlace a Demo:
 [viajes-frontend.vercel.app](https://proyecto-viajes-web-wa63.vercel.app)
