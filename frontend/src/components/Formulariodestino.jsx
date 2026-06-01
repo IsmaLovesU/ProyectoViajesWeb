@@ -215,7 +215,7 @@ function FormularioDestino({ alGuardar, inputNombreRef, alCerrar }) {
                   name="duracionDias"
                   value={campos.duracionDias}
                   onChange={manejarCambio}
-                  placeholder="ej: 7"
+                  placeholder="ej: 6"
                   min="1"
                 />
               </div>
