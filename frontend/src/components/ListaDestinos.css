@@ -2,7 +2,7 @@
 .seccion-lista {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .titulo-seccion {
@@ -25,13 +25,16 @@
 
 .grilla-destinos {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1rem;
 }
 
 .lista-vacia {
+  background: var(--color-superficie);
+  border: 1px dashed var(--color-borde);
+  border-radius: 8px;
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 2.5rem 1rem;
   color: var(--texto-suave);
   display: flex;
   flex-direction: column;

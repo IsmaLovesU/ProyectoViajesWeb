@@ -2,13 +2,13 @@ import TarjetaDestino from './TarjetaDestino'
 import './ListaDestinos.css'
 
 // recibe la lista ya filtrada desde App y la renderiza
-function ListaDestinos({ destinos, alEditar, alArchivar, ultimoItemRef }) {
+function ListaDestinos({ destinos, alEditar, alArchivar, alCambiarEstado, ultimoItemRef }) {
   if (destinos.length === 0) {
     return (
       <div className="lista-vacia">
         <span className="lista-vacia-icono">🗺️</span>
         <p>No hay destinos que mostrar</p>
-        <p className="lista-vacia-sub">Agrega tu primer destino arriba</p>
+        <p className="lista-vacia-sub">Agrega un destino o ajusta los filtros</p>
       </div>
     )
   }
@@ -27,7 +27,8 @@ function ListaDestinos({ destinos, alEditar, alArchivar, ultimoItemRef }) {
             destino={destino}
             alEditar={alEditar}
             alArchivar={alArchivar}
-            ref={index === destinos.length - 1 ? ultimoItemRef : null}
+            alCambiarEstado={alCambiarEstado}
+            itemRef={index === destinos.length - 1 ? ultimoItemRef : null}
           />
         ))}
       </div>

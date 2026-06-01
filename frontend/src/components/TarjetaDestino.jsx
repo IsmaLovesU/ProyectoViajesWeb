@@ -1,9 +1,9 @@
-import { useUser } from '../contexts.jsx'
+import { memo } from 'react'
 import { obtenerCategoria } from '../utils/categorias'
 import './TarjetaDestino.css'
  
 // muestra la info de un destino y los botones de acción
-function TarjetaDestino({ destino, alEditar, alArchivar, itemRef }) {
+function TarjetaDestino({ destino, alEditar, alArchivar, alCambiarEstado, itemRef }) {
   const categoria = obtenerCategoria(destino.categoriaId)
  
   // formatear fecha para mostrar algo legible
@@ -17,7 +17,7 @@ function TarjetaDestino({ destino, alEditar, alArchivar, itemRef }) {
     })
   }
     return (
-        <article className="tarjeta-destino">
+        <article className="tarjeta-destino" ref={itemRef}>
 
             {/* cabecera de la tarjeta */}
             <div className="tarjeta-cabecera">
@@ -69,7 +69,7 @@ function TarjetaDestino({ destino, alEditar, alArchivar, itemRef }) {
                     <span className="chip">📅 {destino.atributos.duracionDias} días</span>
                 )}
                 {destino.atributos?.presupuesto && (
-                    <span className="chip">💵 ${destino.atributos.presupuesto}</span>
+                    <span className="chip">💵 Q{destino.atributos.presupuesto}</span>
                 )}
             </div>
 
@@ -82,6 +82,12 @@ function TarjetaDestino({ destino, alEditar, alArchivar, itemRef }) {
 
             {/* acciones */}
             <div className="tarjeta-acciones">
+                <button
+                    className="boton-accion boton-estado"
+                    onClick={() => alCambiarEstado(destino)}
+                >
+                    {destino.estado === 'visitado' ? 'Marcar pendiente' : 'Marcar visitado'}
+                </button>
                 <button
                     className="boton-accion boton-editar"
                     onClick={() => alEditar(destino)}
@@ -100,5 +106,5 @@ function TarjetaDestino({ destino, alEditar, alArchivar, itemRef }) {
     )
 }
  
-export default TarjetaDestino
+export default memo(TarjetaDestino)
 
