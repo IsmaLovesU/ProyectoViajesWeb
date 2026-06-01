@@ -8,6 +8,8 @@ import PanelEstadisticas from './components/PanelEstadisticas'
 import { CATEGORIAS_VIAJE } from './utils/categorias'
 import { initialState, itemsReducer, TIPOS_ACCION } from './reducers/itemsReducer'
 import { useStorage } from './contexts.jsx'
+import useAtajoTeclado from './hooks/useAtajoTeclado.js'
+import useRacha from './hooks/useRacha.js'
 import './App.css'
 
 function normalizarDestino(destino) {
@@ -41,6 +43,16 @@ function App() {
 
   const inputNombreRef = useRef(null)
   const ultimoItemRef = useRef(null)
+
+  // Atajo Ctrl+N → abrir formulario
+  const abrirFormulario = useCallback((e) => {
+    e.preventDefault()
+    setMostrarFormulario(true)
+  }, [])
+  useAtajoTeclado('n', abrirFormulario, { ctrlKey: true, ignorarEnInputs: false })
+
+  // Hook de dominio: racha de días con actividad
+  const { racha, activo: hoyTieneActividad } = useRacha(lista.filter(d => d.activo !== false))
 
   useEffect(() => {
     async function cargar() {
@@ -287,24 +299,22 @@ function App() {
     if (evento.target === evento.currentTarget) setMostrarFormulario(false)
   }, [])
 
-  const manejarAtajos = useCallback((e) => {
-    if (e.ctrlKey && e.key === 'n') {
-      e.preventDefault()
-      setMostrarFormulario(true)
-    }
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener('keydown', manejarAtajos)
-    return () => window.removeEventListener('keydown', manejarAtajos)
-  }, [manejarAtajos])
-
   return (
     <div className="contenedor-app">
       <header className="cabecera">
         <div className="cabecera-texto">
           <h1>Mis Destinos ✈️</h1>
-          <p className="subtitulo">Registro personal de viajes</p>
+          <p className="subtitulo">
+            Registro personal de viajes
+            {racha > 0 && (
+              <span
+                title={hoyTieneActividad ? `¡Racha activa de ${racha} día(s)!` : `Última racha: ${racha} día(s)`}
+                style={{ marginLeft: '0.5rem', cursor: 'default' }}
+              >
+                🔥 {racha}
+              </span>
+            )}
+          </p>
         </div>
 
         <div className="cabecera-controles">
