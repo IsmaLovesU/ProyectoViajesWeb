@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useCallback } from 'react'
 import { useTheme } from '../contexts.jsx'
 import useAtajoTeclado from '../hooks/useAtajoTeclado.js'
 
