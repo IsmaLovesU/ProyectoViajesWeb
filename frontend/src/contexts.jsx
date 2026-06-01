@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { crearDestino } from './utils/destino'
 
-const API_BASE = 'http://localhost:3000/api/items'
+const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api/items'
 
 // 1. StorageContext — abstrae API vs LocalStorage
 const StorageContext = createContext(null)
